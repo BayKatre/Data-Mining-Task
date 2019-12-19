@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Earthquakes.scss'
 import Tabledata from './table-data/Tabledata'
-import { Loader } from 'tabler-react'
+import { Dimmer } from 'tabler-react'
 
 class Earthquakes extends Component {
     constructor(props) {
@@ -11,15 +11,20 @@ class Earthquakes extends Component {
              
         }
     }
+    isEmpty = (data) => {
+        if(Object.entries(data).length)
+            return 0
+        else
+            return 1
+    }
     
     render() {
         const { data } = this.props
         console.log(data)
-        return (data.row === [] 
-            ? 
-                <Loader />
-            :
+        return (
+            <Dimmer active={this.isEmpty(data)} loader>
                 <Tabledata data={data}/>
+            </Dimmer>
         )
     }
 }

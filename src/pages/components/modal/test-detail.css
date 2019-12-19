@@ -1,0 +1,9 @@
+.card-test{
+    box-shadow: none;
+}
+.button-form{
+    float: right
+}
+.delete-button{
+    cursor: pointer;
+}

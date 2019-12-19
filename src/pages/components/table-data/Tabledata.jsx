@@ -57,8 +57,7 @@ const Tabledata = props => {
           ],
       rows: props.data
     };
-    if(data === [])
-    
+    if(data.rows === [])
       return <></>
     else
       return (

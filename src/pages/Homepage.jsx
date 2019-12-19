@@ -4,6 +4,7 @@ import { Container, Page, Card, Nav, Grid } from 'tabler-react'
 import "tabler-react/dist/Tabler.css";
 import Service from '../service/Service'
 import Earthquakes from './components/Earthquakes'
+import Test from './components/Test';
 import Analytics from './components/Analytics';
 
 class Homepage extends Component {
@@ -20,14 +21,13 @@ class Homepage extends Component {
     }
     componentDidMount = () => {
         Service.fetchDataset().then(res=> {
-            this.setState({data: res.data})
-            console.log(this.state.data)
+            const data = res.data.filter(e => e.location)
+            this.setState({data: data})
         })
     }
     
     render() {
         const { location, data } = this.state
-        console.log(data)
         return (
             <Container>
                 <Page>
@@ -37,7 +37,8 @@ class Homepage extends Component {
                     />
                     <Nav>
                         <Nav.Item icon="globe" active={location === 'data'} onClick={() => this.route('data')}>Eartquake Data</Nav.Item>
-                        <Nav.Item icon="map" active={location === 'analytics'} onClick={() => this.route('analytics')}>Analytics</Nav.Item>
+                        <Nav.Item icon="map" active={location === 'test'} onClick={() => this.route('test')}>Test</Nav.Item>
+                        <Nav.Item icon="globe" active={location === 'analytics'} onClick={() => this.route('analytics')}>Analytics</Nav.Item>
                     </Nav>
                     <Grid.Row cards deck>
                     <Grid.Col md={10} offset={1} className="column">
@@ -48,6 +49,10 @@ class Homepage extends Component {
                             location === 'data'
                             ?
                             <Earthquakes data={data}/>
+                            :
+                            location === 'test'
+                            ?
+                            <Test data={data}/>
                             :
                             location === 'analytics'
                             ?
