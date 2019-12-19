@@ -13,7 +13,8 @@ class Homepage extends Component {
     
         this.state = {
              location: 'data',
-             data: []
+             data: [],
+             testData: []
         }
     }
     route = location => {
@@ -21,13 +22,18 @@ class Homepage extends Component {
     }
     componentDidMount = () => {
         Service.fetchDataset().then(res=> {
-            const data = res.data.filter(e => e.location)
-            this.setState({data: data})
+            let data = res.data
+            const testData = data.slice(-500, -1)
+            data = data.slice(0, data.length-500)
+            // console.log(testData)
+            // console.log(data)
+            this.setState({data: data, testData: testData})
         })
     }
     
+    
     render() {
-        const { location, data } = this.state
+        const { location, data, testData } = this.state
         return (
             <Container>
                 <Page>
@@ -52,7 +58,7 @@ class Homepage extends Component {
                             :
                             location === 'test'
                             ?
-                            <Test data={data}/>
+                            <Test data={data} testData={testData}/>
                             :
                             location === 'analytics'
                             ?

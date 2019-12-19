@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'tabler-react'
+import { Form, Button, Grid } from 'tabler-react'
 import { number } from 'prop-types'
 // import { min } from 'simple-statistics'
 import ReactModal from 'react-modal';
 import TestDetail from './modal/TestDetail';
-import './test.css'
+import './test.scss'
+import TestTabledata from './table-data/TestTabledata';
 
 class Test extends Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class Test extends Component {
     }
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
+        // console.log(this.state.depth)
     }
     openAddModal = (event) => {
         this.setState({ eventDataForTalkers: event })
@@ -126,10 +128,15 @@ class Test extends Component {
         this.seLatitudeScore = selatitudesScore
         this.seLongitudeScore = selongitudesScore
         this.seDepthScore = sedepthsScore
-        console.log(smallDepths)
+        // console.log(smallDepths)
     }
     calculate = (latitude, longitude, depth) => {
-        for (let i = 0; i<11754; i++){
+        this.euklid = {
+            small: 999999999999,
+            middle: 99999999999,
+            serious: 99999999999,
+        }
+        for (let i = 0; i<11254; i++){
             let small = Math.sqrt(
                             Math.pow(this.smLatitudeScore[i]-latitude, 2)+
                             Math.pow(this.smLongitudeScore[i]-longitude, 2)+
@@ -147,7 +154,7 @@ class Test extends Component {
             if(this.euklid.serious > serious) this.euklid.serious = serious 
         }
         
-        this.setState({testEuklid: this.euklid, showModal: true}, console.log(this.state.testEuklid))
+        this.setState({testEuklid: this.euklid, showModal: true})
         
     }
     createForm(){
@@ -197,9 +204,21 @@ class Test extends Component {
     
     
     render() {
+        const { testData } = this.props
         return (
             <>
-            {this.createForm()}
+                <Grid.Row>
+                    <Grid.Col
+                        width={6}
+                    >
+                        <TestTabledata data={testData} />
+                    </Grid.Col>
+                    <Grid.Col 
+                        width={6}
+                    >
+                        {this.createForm()}
+                    </Grid.Col>
+                </Grid.Row>
             </>
         )
     }

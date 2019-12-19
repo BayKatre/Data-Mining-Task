@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Page, Card, Alert } from 'tabler-react'
-import './test-detail.css'
+import './test-detail.scss'
 import { min } from 'simple-statistics'
 
 class TestDetail extends Component {
@@ -16,12 +16,13 @@ class TestDetail extends Component {
     }
     componentDidMount = () => {
         const { testEuklid } = this.state
+        // eslint-disable-next-line
         let group = Object.entries(testEuklid).filter(e => {
             if(e[1] === min(Object.values(testEuklid)))
                 return e[0]
         })[0][0]
-        console.log(group)
-        console.log(testEuklid)
+        // console.log(group)
+        // console.log(testEuklid)
         this.setState({findedGroup: group})
     }
     createCard = () => {

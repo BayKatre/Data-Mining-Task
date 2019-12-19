@@ -45,14 +45,14 @@ class Analytics extends Component {
     }
     filterData = () => {
         const { data } = this.state
-        console.log(data)
+        // console.log(data)
         if(data){
             const locationBasedGroup = data.groupBy('location');
-            console.log(locationBasedGroup)
+            // console.log(locationBasedGroup)
             const locationBased = Object.entries(locationBasedGroup).map(e => {
                 return {x: e[0], y: e[1].length}
             })
-            console.log(locationBased)
+            // console.log(locationBased)
             this.setState({locationBased: locationBased})
         }
     }

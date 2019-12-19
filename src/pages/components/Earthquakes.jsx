@@ -20,7 +20,7 @@ class Earthquakes extends Component {
     
     render() {
         const { data } = this.props
-        console.log(data)
+        // console.log(data)
         return (
             <Dimmer active={this.isEmpty(data)} loader>
                 <Tabledata data={data}/>
