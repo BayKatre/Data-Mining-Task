@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid } from 'tabler-react'
 import { number } from 'prop-types'
-// import { min } from 'simple-statistics'
+import { max } from 'simple-statistics'
 import ReactModal from 'react-modal';
 import TestDetail from './modal/TestDetail';
 import './test.scss'
@@ -136,7 +136,8 @@ class Test extends Component {
             middle: 99999999999,
             serious: 99999999999,
         }
-        for (let i = 0; i<11254; i++){
+        const totalLength = max([this.smLatitudeScore.length, this.mLatitudeScore.length, this.seLatitudeScore.length])
+        for (let i = 0; i<totalLength; i++){
             let small = Math.sqrt(
                             Math.pow(this.smLatitudeScore[i]-latitude, 2)+
                             Math.pow(this.smLongitudeScore[i]-longitude, 2)+

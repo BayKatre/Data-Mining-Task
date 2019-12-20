@@ -5,7 +5,7 @@ import "tabler-react/dist/Tabler.css";
 import Service from '../service/Service'
 import Earthquakes from './components/Earthquakes'
 import Test from './components/Test';
-import Analytics from './components/Analytics';
+import Analysis from './components/Analysis';
 
 class Homepage extends Component {
     constructor(props) {
@@ -42,14 +42,14 @@ class Homepage extends Component {
                     subTitle="..."
                     />
                     <Nav>
-                        <Nav.Item icon="globe" active={location === 'data'} onClick={() => this.route('data')}>Eartquake Data</Nav.Item>
+                        <Nav.Item icon="globe" active={location === 'data'} onClick={() => this.route('data')}>Earthquake Data</Nav.Item>
                         <Nav.Item icon="map" active={location === 'test'} onClick={() => this.route('test')}>Test</Nav.Item>
-                        <Nav.Item icon="globe" active={location === 'analytics'} onClick={() => this.route('analytics')}>Analytics</Nav.Item>
+                        <Nav.Item icon="globe" active={location === 'analysis'} onClick={() => this.route('analysis')}>Analysis</Nav.Item>
                     </Nav>
                     <Grid.Row cards deck>
                     <Grid.Col md={10} offset={1} className="column">
                         <Card 
-                        title="Eartquake Data"
+                        title="Earthquake Data"
                         className="mt-4"
                         body={
                             location === 'data'
@@ -60,9 +60,9 @@ class Homepage extends Component {
                             ?
                             <Test data={data} testData={testData}/>
                             :
-                            location === 'analytics'
+                            location === 'analysis'
                             ?
-                            <Analytics data={data}/>
+                            <Analysis data={data} testData={testData}/>
                             : ''
                         }
                         />
