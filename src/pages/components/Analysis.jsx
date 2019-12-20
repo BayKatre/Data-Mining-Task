@@ -155,8 +155,8 @@ class Analytics extends Component {
             anma: se.anma,
             f: (se.kesinlik + se.anma) ? (2*se.kesinlik*se.anma/(se.kesinlik+se.anma)) : 0
         }
-        console.log(sePositive)
-        // this.findKesinlik(sm, me, se)
+        // console.log(sePositive)
+        this.findKesinlik(sm, me, se)
 
 
     }
